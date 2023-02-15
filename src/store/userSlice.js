@@ -1,16 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// const deleteUser:(state,payload)=>{
-//     // const newData = state?userData?.filter((item) =>( item.id != payload));
-//     const newData = state?userData?.filter((val)=>{
-//         if(val.id!=payload){
-//             return val;
-//         }
-       
-//     })
-// }
-
-
 const initialState={
     userData:[],
     showDetails:{id:"" , details:"none"}
@@ -36,12 +25,7 @@ const UserSlice=createSlice({
             const {payload}=action;
             console.log(payload,"payload")
             state.showDetails=payload
-        },
-        // userDelete(state, action) {
-        //     const newhistoryGenrate = state?.filter((item) => item.id != action.payload);
-        //     console.log(newhistoryGenrate,"newhistoryGenrate")
-        //     // state(newhistoryGenrate);
-        // }
+        }
     }
 })
 

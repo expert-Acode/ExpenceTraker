@@ -169,3 +169,9 @@ body {
 .expense-btn {
   background-color: var(--expense);
 }
+
+.showMore-btn {
+  background-color: white;
+  color: black;
+  border-style: hidden;
+}

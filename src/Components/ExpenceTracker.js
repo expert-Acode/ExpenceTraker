@@ -3,21 +3,16 @@ import Expense from "./Expence";
 import TransactionForm from "./TransactionForm";
 import TransactionHistory from "./TransactionHistory";
 import { useDispatch, useSelector } from "react-redux";
-import { userAdded, userDelete } from "../store/userSlice";
 import { Col, Row, Container, Card } from "react-bootstrap";
 import TransactionAllDetails from "./TransactionAllDetails";
 import TransactionAllHistory from "./TransactionAllHistory";
 
 export default function ExpenceTracker() {
-  const dispatch = useDispatch();
   const { userData } = useSelector((state) => state.users.userData);
   const showDetails = useSelector((state) => state.users.userData.showDetails);
 
-  console.log(showDetails, "showDetails");
-
   const [income, setIncome] = useState(0);
   const [expense, setExpense] = useState(0);
-  // const [history, setHistory] = useState(userData);
 
   useEffect(() => {
     calculateData();
@@ -27,7 +22,7 @@ export default function ExpenceTracker() {
     let income = 0,
       expense = 0;
 
-      userData.forEach((data) => {
+    userData.forEach((data) => {
       if (data.type == "income") {
         income += data.amount;
       } else if (data.type == "expense") {
@@ -38,17 +33,9 @@ export default function ExpenceTracker() {
     setExpense(expense);
   };
 
-  // const deleteValue = (id) => {
-  //   const newhistoryGenrate = history.filter((item) => item.id != id);
-
-  //   console.log(id, "idForDelete");
-  //   setHistory(newhistoryGenrate);
-  //   dispatch(userDelete(id));
-  // };
-
   return (
     <div>
-      <Container>
+      <Container style={{minWidth:550}} >
         <Row>
           <Card bg="dark" border="dark">
             {" "}
@@ -59,18 +46,23 @@ export default function ExpenceTracker() {
           <Card body border="dark">
             <Expense income={income} expense={expense} />
             {showDetails?.type == "none" ? (
+              <>
               <Row>
                 <Col>
                   <TransactionForm />
                 </Col>
+              </Row>
+              <Row>
                 <Col>
                   <TransactionHistory />
                 </Col>
               </Row>
+              </>
             ) : showDetails?.type == "one" ? (
               <Row>
                 <Col>
-                <TransactionAllDetails idForDetails={showDetails?.id} /></Col>
+                  <TransactionAllDetails idForDetails={showDetails?.id} />
+                </Col>
               </Row>
             ) : (
               <Row>

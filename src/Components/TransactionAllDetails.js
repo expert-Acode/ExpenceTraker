@@ -6,13 +6,9 @@ import DeleteModal from "./modals/deleteModal";
 
 export default function TransactionAllDetails({ idForDetails }) {
   const dispatch = useDispatch();
-  //   const [deleteType, setDeleteType] = useState("");
-  //   const [showMore, setShowMore] = useState(false);
     const [show, setShow] = useState(false);
 
   const { userData } = useSelector((state) => state.users.userData);
-
-  console.log(idForDetails, "iddddddddddd");
 
   useEffect(() => {
     dataHistory();
@@ -86,10 +82,6 @@ export default function TransactionAllDetails({ idForDetails }) {
     return alldata;
   };
 
-  const deleteData=(type)=>{
-    setShow(true)
-  }
-
   const backButton = (id, type) => {
     const data = { id: id, type: type };
     dispatch(showAllDetails(data));
@@ -128,7 +120,7 @@ export default function TransactionAllDetails({ idForDetails }) {
             {dataHistory()}
           </ListGroup>
         </Card.Body>
-        <Col><Button onClick={()=>deleteData(idForDetails)}>Delete</Button></Col>
+        <Col><Button onClick={()=>setShow(true)}>Delete</Button></Col>
       </Card>
       <DeleteModal show={show} setShow={setShow} />
     </div>

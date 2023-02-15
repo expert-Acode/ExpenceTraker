@@ -7,7 +7,6 @@ import { removeAllData, removeOneData, showAllDetails } from '../../store/userSl
 function DeleteModal({show,setShow}) {
   const dispatch=useDispatch()
   const {id} = useSelector((state) => state.users.userData.showDetails);
-  console.log(id,"ididid")
    const deleteData=()=>{
     if(id!=0){
       dispatch(removeOneData(id))
